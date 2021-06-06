@@ -1,142 +1,99 @@
 "use strict"
 
-// Задание 1
+//Задание 1
 
-var a = 1, b = 1, c, d;
-c = ++a; console.log(c);           // 2 Потому что, префикс ++ увеличивает на еденицу.
-d = b++; console.log(d);           // 1 Потому что постфикс ++ возвращает сначала первое значение. 
-c = (2 + ++a); console.log(c);      // 5 Потому что в первом примере мы добавили еденицу, а = 2, здесь добавляем еще еденицу, получается а = 3, в итоге с = 5;
-d = (2 + b++); console.log(d);      // 4 Потому что во втором примере мы прибавили единицу в переменную b ее значение стало равно 2. В данном примере прибавляем еще единицу и b становится равно 3, но выводим предыдущее значение т.е. 2, отсюда получаем 4;
-console.log(a);                    // 3 Прибавили по единице в примере 1 и примере 3
-console.log(b);                    // 3 Прибавили единицу в примере 2 и примере 4 
+
+//      Создаем массив от 1 до 100
+var arr = [];
+var end = 1;
+while (end < 100) {
+    end++;
+    arr.push(end);
+}
+//      Удаляем все четные цифры
+var a = 2;
+var b = 2;
+while (a <= 100) {
+    a += b;
+    arr.splice(arr.indexOf(a), 1);
+}
+//      Удаляет все цифры которые деляться на нечетные до 10
+a = 4;
+b = 3;
+while (a < 100) {
+    if (a % b === 0 && arr.indexOf(a) !== -1) {
+        arr.splice(arr.indexOf(a), 1);
+    } else {
+        a++;
+    }
+}
+
+a = 6;
+b = 5;
+while (a < 100) {
+    if (a % b === 0 && arr.indexOf(a) !== -1) {
+        arr.splice(arr.indexOf(a), 1);
+    } else {
+        a++;
+    }
+}
+
+a = 8;
+b = 7;
+while (a < 100) {
+    if (a % b === 0 && arr.indexOf(a) !== -1) {
+        arr.splice(arr.indexOf(a), 1);
+    } else {
+        a++;
+    }
+}
+
+console.log(arr);
+
 
 //Задание 2
 
-var a = 2;
-var x = 1 + (a *= 2);
-//Потому что получается х = 1 + (а = а * 2), т.е. х = 1 + 4, х = 5;
-//Ответ: x = 5;
-
-//Задание 3
-
-let a = +prompt("Введите первое число");
-let b = +prompt("Введите второе число");
-
-if (a >= 0 && b >= 0) {
-    c = a - b;
-    alert("Разность " + c);
-} else if (a < 0 && b < 0) {
-    x = a * b;
-    alert("Произведение " + x);
-} else if (a > 0 && b < 0 || a < 0 && b > 0) {
-    y = a + b;
-    alert("Сумма " + y);
+let basket = [
+    {
+        product: "pen",
+        price: getNumber(50, 100)
+    },
+    {
+        product: "pencil",
+        price: getNumber(50, 100)
+    },
+    {
+        product: "file",
+        price: getNumber(50, 100)
+    },
+    {
+        product: "paper",
+        price: getNumber(50, 100)
+    }
+];
+let basketPrice = 0;
+for (let prod of basket) {
+    basketPrice += prod.price;
+    console.log("Товар " + prod.product + " стоит: " + prod.price);
 }
+
+console.log("Стоимость корзины: " + basketPrice + " руб.");
 
 //Задание 4
 
-var x = +prompt("Введите число от 1 до 15");
-
-switch (x) {
-    case 1:
-        console.log("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15");
-        break;
-    case 2:
-        console.log("2 3 4 5 6 7 8 9 10 11 12 13 14 15");
-        break;
-    case 3:
-        console.log("3 4 5 6 7 8 9 10 11 12 13 14 15");
-    case 4:
-        console.log("4 5 6 7 8 9 10 11 12 13 14 15");
-        break;
-    case 5:
-        console.log("5 6 7 8 9 10 11 12 13 14 15");
-        break;
-    case 6:
-        console.log("6 7 8 9 10 11 12 13 14 15");
-        break;
-    case 7:
-        console.log("7 8 9 10 11 12 13 14 15");
-        break;
-    case 8:
-        console.log("8 9 10 11 12 13 14 15");
-        break;
-    case 9:
-        console.log("9 10 11 12 13 14 15");
-        break;
-    case 10:
-        console.log("10 11 12 13 14 15");
-        break;
-    case 11:
-        console.log("11 12 13 14 15");
-        break;
-    case 12:
-        console.log("12 13 14 15");
-        break;
-    case 13:
-        console.log("13 14 15");
-        break;
-    case 14:
-        console.log("14 15");
-        break;
-    case 15:
-        console.log("15");
-        break;
-
+var i;
+for (i = 0; i <= 9; i++) {
+    console.log(i);
 }
-// Мне кажется этот код, возможно, можно упростить как-нибудь, что бы не выводить каждое число вручную. Но я пока не знаю как.
-//Может быть с помощью массива как-то.
+
+//Не знаю как без console.log  вывести... Чтобы пусто было.
 
 //Задание 5
 
-
-
-
-function D(a, b) {
-    return a + b;
+var arr = [];
+var end = 0;
+while (end < 20) {
+    end++;
+    arr.push('x');
+    console.log(arr);
 }
-console.log(D(5, 3));
-
-function F(a, b) {
-    return a - b;
-}
-console.log(F(5, 3));
-
-function G(a, b) {
-    return a / b;
-}
-console.log(G(5, 3));
-
-function H(a, b) {
-    return a + b;
-}
-console.log(H(5, 3));
-
-//Задание 6
-
-function mathOperation(arg1, arg2, operation) {
-    switch (operation) {
-        case "Сложение":
-            return arg1 + arg2;
-            break;
-        case "Вычитание":
-            return arg1 - arg2;
-            break;
-        case "Деление":
-            return arg1 / arg2;
-            break;
-        case "Умножение":
-            return arg1 * arg2;
-            break;
-    }
-}
-//Задание 8
-
-function power(val, pow) {
-    if (pow == 1) {
-        return val
-    } else {
-        return val ** pow
-    }
-}
-console.log(power(3, 2))
