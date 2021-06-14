@@ -1,99 +1,105 @@
 "use strict"
 
-//Задание 1
 
+var cellsnumbers = 1,
+    stroke = 8,
+    colNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+    // Набор шахмат
+    chesses = [
+        // Черные шахматы
+        { name: 'Черная пешка', position: 'A-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'B-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'C-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'D-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'E-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'F-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'G-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная пешка', position: 'H-7', image: 'http://chess-board.ru/img/pieces/pb.svg' },
+        { name: 'Черная ладья', position: 'A-8', image: 'http://chess-board.ru/img/pieces/rb.svg' },
+        { name: 'Черная ладья', position: 'H-8', image: 'http://chess-board.ru/img/pieces/rb.svg' },
+        { name: 'Черный конь', position: 'B-8', image: 'http://chess-board.ru/img/pieces/nb.svg' },
+        { name: 'Черный конь', position: 'G-8', image: 'http://chess-board.ru/img/pieces/nb.svg' },
+        { name: 'Черный cлон', position: 'C-8', image: 'http://chess-board.ru/img/pieces/bb.svg' },
+        { name: 'Черный cлон', position: 'F-8', image: 'http://chess-board.ru/img/pieces/bb.svg' },
+        { name: 'Черный ферзь', position: 'D-8', image: 'http://chess-board.ru/img/pieces/qb.svg' },
+        { name: 'Черный король', position: 'E-8', image: 'http://chess-board.ru/img/pieces/kb.svg' },
+        // Белые шахматы
+        { name: 'Белая пешка', position: 'A-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'B-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'C-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'D-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'E-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'F-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'G-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая пешка', position: 'H-2', image: 'http://chess-board.ru/img/pieces/pw.svg' },
+        { name: 'Белая ладья', position: 'A-1', image: 'http://chess-board.ru/img/pieces/rw.svg' },
+        { name: 'Белая ладья', position: 'H-1', image: 'http://chess-board.ru/img/pieces/rw.svg' },
+        { name: 'Белый конь', position: 'B-1', image: 'http://chess-board.ru/img/pieces/nw.svg' },
+        { name: 'Белый конь', position: 'G-1', image: 'http://chess-board.ru/img/pieces/nw.svg' },
+        { name: 'Белый cлон', position: 'C-1', image: 'http://chess-board.ru/img/pieces/bw.svg' },
+        { name: 'Белый cлон', position: 'F-1', image: 'http://chess-board.ru/img/pieces/bw.svg' },
+        { name: 'Белый ферзь', position: 'D-1', image: 'http://chess-board.ru/img/pieces/qw.svg' },
+        { name: 'Белый король', position: 'E-1', image: 'http://chess-board.ru/img/pieces/kw.svg' }
+    ],
+    buildOn = true;
 
-//      Создаем массив от 1 до 100
-var arr = [];
-var end = 1;
-while (end < 100) {
-    end++;
-    arr.push(end);
-}
-//      Удаляем все четные цифры
-var a = 2;
-var b = 2;
-while (a <= 100) {
-    a += b;
-    arr.splice(arr.indexOf(a), 1);
-}
-//      Удаляет все цифры которые деляться на нечетные до 10
-a = 4;
-b = 3;
-while (a < 100) {
-    if (a % b === 0 && arr.indexOf(a) !== -1) {
-        arr.splice(arr.indexOf(a), 1);
-    } else {
-        a++;
+// Функция, которая нумерует столбцы от А до H
+function setColName() {
+    for (let i = 1; i < 9; i++) {
+        let colname = document.createElement("div");
+        colname.className = "chess_colname";
+        colname.innerHTML = colNames[i - 1];
+        document.getElementById('chesstable').appendChild(colname);
     }
 }
+// Функция, которая нумерует строки; в задании сказано нумеровать от 1 до 8, но правильнее будет первую строку сделать 8, а последнюю - 1
+function setStrokeName(stroke) {
+    let cellstroke = document.createElement("div");
+    cellstroke.className = "chess_cellstroke";
+    cellstroke.innerHTML = stroke;
+    document.getElementById('chesstable').appendChild(cellstroke);
+}
 
-a = 6;
-b = 5;
-while (a < 100) {
-    if (a % b === 0 && arr.indexOf(a) !== -1) {
-        arr.splice(arr.indexOf(a), 1);
-    } else {
-        a++;
+function generateChess() {
+
+    if (buildOn === false) {
+        document.getElementById('chesstable').innerHTML = "";
+        buildOn = true;
+        cellsnumbers = 1;
+        stroke = 8;
     }
-}
 
-a = 8;
-b = 7;
-while (a < 100) {
-    if (a % b === 0 && arr.indexOf(a) !== -1) {
-        arr.splice(arr.indexOf(a), 1);
-    } else {
-        a++;
+    document.getElementById('chesstable').style.padding = '10px';
+    setColName();
+    for (let i = 1; i < 9; i++) {
+        setStrokeName(stroke);
+        for (let j = 1; j < 9; j++) {
+            let cell = document.createElement("div");
+
+            if (i % 2 == j % 2) {
+                cell.className = "chess_cell animated fadeIn";
+                cell.id = colNames[j - 1] + '-' + stroke;
+                document.getElementById('chesstable').appendChild(cell);
+            } else {
+                cell.className = "chess_cell cell-black animated fadeIn";
+                cell.id = colNames[j - 1] + '-' + stroke;
+                document.getElementById('chesstable').appendChild(cell);
+            }
+        }
+        setStrokeName(stroke)
+        stroke--;
     }
-}
+    setColName();
+    // console.log("Шахматные поля готовы. Расставляем шахматы:");
+    chesses.forEach(function (item, i, chesses) {
+        // console.log(chesses[i].name + " встает на клетку " + chesses[i].position);
+        let chessfigure = document.createElement("div");
+        chessfigure.className = "chess_figure bounceIn";
+        chessfigure.title = chesses[i].name;
+        chessfigure.innerHTML = "<img src='" + chesses[i].image + "'>";
+        document.getElementById(chesses[i].position).appendChild(chessfigure);
+    });
+    // console.log("Шахматная доска сгенерирована");
 
-console.log(arr);
-
-
-//Задание 2
-
-let basket = [
-    {
-        product: "pen",
-        price: getNumber(50, 100)
-    },
-    {
-        product: "pencil",
-        price: getNumber(50, 100)
-    },
-    {
-        product: "file",
-        price: getNumber(50, 100)
-    },
-    {
-        product: "paper",
-        price: getNumber(50, 100)
-    }
-];
-let basketPrice = 0;
-for (let prod of basket) {
-    basketPrice += prod.price;
-    console.log("Товар " + prod.product + " стоит: " + prod.price);
-}
-
-console.log("Стоимость корзины: " + basketPrice + " руб.");
-
-//Задание 4
-
-var i;
-for (i = 0; i <= 9; i++) {
-    console.log(i);
-}
-
-//Не знаю как без console.log  вывести... Чтобы пусто было.
-
-//Задание 5
-
-var arr = [];
-var end = 0;
-while (end < 20) {
-    end++;
-    arr.push('x');
-    console.log(arr);
+    buildOn = false;
 }
